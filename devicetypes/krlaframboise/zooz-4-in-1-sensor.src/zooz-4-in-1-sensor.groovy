@@ -808,7 +808,7 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
 private createTempEventMaps(val, onlyIfNew) {
 	state.actualTemp = val
 	def scale = getTemperatureScale()
-	def offsetVal = applyOffset(val, tempOffsetSetting, "Temperature", "°${scale}")
+	def offsetVal = applyBitchinOffset(val, tempOffsetSetting, "Temperature", "°${scale}")
 	return createEventMaps("temperature", offsetVal, scale, null, onlyIfNew)	
 }
 
@@ -860,6 +860,14 @@ private applyOffset(val, offsetVal, name, unit) {
 		logDebug "Applying ${offsetVal}${unit} ${name} Offset to ${val}${unit}"
 		val = (safeToDec(val, 0) + safeToDec(offsetVal, 0))
 	}	
+	return val
+}
+
+private applyBitchinOffset(val, offsetVal, name, unit) {
+	if (offsetVal) {
+		logDebug "Applying ${offsetVal}${unit} ${name} Offset to ${val}${unit}"
+		val = (safeToDec(val, 0) + (safeToDec(offsetVal, 0) / 100))
+	}
 	return val
 }
 
@@ -1109,3 +1117,4 @@ private logDebug(msg) {
 private logTrace(msg) {
 	// log.trace "$msg"
 }
+
