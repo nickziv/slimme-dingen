@@ -77,7 +77,7 @@ metadata {
 
 		getParamInput(tempScaleParam)
 		getParamInput(tempTriggerParam)
-		getNumberInput("tempOffset", "Temperature Offset [-25 to 25]\n(0 = No Offset)\n(-1 = Subtract 1°)\n(1 = Add 1°)", "-25..25", tempOffsetSetting)
+		getNumberInput("tempOffset", "Temperature Offset [-500 to 500]\n(0 = No Offset)\n(-1 = Subtract 1°)\n(1 = Add 1°)", "-500..500", tempOffsetSetting)
 		getParamInput(humidityTriggerParam)	
 		getNumberInput("humidityOffset", "Humidity % Offset [-25 to 25]\n(0 = No Offset)\n(-1 = Subtract 1%)\n(1 = Add 1%)", "-25..25", humidityOffsetSetting)
 		getParamInput(lightTriggerParam)
